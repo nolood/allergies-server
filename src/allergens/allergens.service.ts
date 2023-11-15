@@ -26,6 +26,16 @@ export class AllergensService implements OnModuleInit {
     const dataToSeed = data.default;
 
     await this.allergenRepository.bulkCreate(dataToSeed);
+
+    for (let i = 0; i < dataToSeed.length; i++) {
+      const allergen = await this.allergenRepository.findOne({
+        where: { title: dataToSeed[i].title },
+      });
+
+      if (!allergen) {
+        await this.allergenRepository.create(dataToSeed[i]);
+      }
+    }
   }
 
   async getAll() {
