@@ -17,11 +17,11 @@ export class User extends Model<User> {
   first_name: string;
   @Column({ type: DataTypes.STRING })
   last_name: string;
-  @Column({ type: DataTypes.STRING })
+  @Column({ type: DataTypes.STRING(500) })
   photo_100: string;
-  @Column({ type: DataTypes.STRING })
+  @Column({ type: DataTypes.STRING(500) })
   photo_200: string;
-  @Column({ type: DataTypes.STRING })
+  @Column({ type: DataTypes.STRING(500) })
   photo_base: string;
 
   @BelongsToMany(() => Allergen, () => UsersAllergens)
