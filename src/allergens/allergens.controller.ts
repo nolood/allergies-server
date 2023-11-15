@@ -1,5 +1,9 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
 import { AllergensService } from './allergens.service';
+import { AllergenBaseDto } from './dto/allergen-base.dto';
+import { UserIdGuard } from '../users/user.guard';
+import { AllergensByDateDto } from './dto/allergens-by-date.dto';
+import { User } from '../users/users.model';
 
 @Controller('allergens')
 export class AllergensController {
@@ -8,5 +12,14 @@ export class AllergensController {
   @Get('/')
   async getAllergens() {
     return this.allergensService.getAll();
+  }
+
+  @UseGuards(UserIdGuard)
+  @Post('/week')
+  async getAllergensByWeek(
+    @Body() dto: AllergensByDateDto,
+    @Req() req: { user: User },
+  ) {
+    return this.allergensService.getByDateAndUser(dto, req.user.id);
   }
 }
