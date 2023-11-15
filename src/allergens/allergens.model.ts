@@ -1,5 +1,7 @@
-import { Column, Model, Table } from 'sequelize-typescript';
+import { BelongsToMany, Column, Model, Table } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
+import { UsersAllergens } from '../users/UsersAllergens.model';
+import { User } from '../users/users.model';
 
 @Table({ tableName: 'allergens' })
 export class Allergen extends Model<Allergen> {
@@ -18,4 +20,11 @@ export class Allergen extends Model<Allergen> {
   end: string;
   @Column({ type: DataTypes.STRING })
   color: string;
+  @Column({ type: DataTypes.STRING })
+  symptoms: string;
+  @Column({ type: DataTypes.STRING })
+  crossReactions: string;
+
+  @BelongsToMany(() => User, () => UsersAllergens)
+  users: User[];
 }

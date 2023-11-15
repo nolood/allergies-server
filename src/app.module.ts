@@ -5,6 +5,7 @@ import { AllergensModule } from './allergens/allergens.module';
 import { UsersModule } from './users/users.module';
 import { User } from './users/users.model';
 import { Allergen } from './allergens/allergens.model';
+import { UsersAllergens } from './users/UsersAllergens.model';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -17,7 +18,7 @@ import { Allergen } from './allergens/allergens.model';
       username: process.env.POSTGRES_USER,
       password: String(process.env.POSTGRES_PASSWORD),
       database: process.env.POSTGRES_DB,
-      models: [User, Allergen],
+      models: [User, Allergen, UsersAllergens],
       autoLoadModels: true,
     }),
     AllergensModule,
