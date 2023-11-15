@@ -3,11 +3,13 @@ import { InjectModel } from '@nestjs/sequelize';
 import { User } from './users.model';
 import { UserCreateDto } from './dto/user-create.dto';
 import { AddAllergensDto } from './dto/add-allergens.dto';
+import { Allergen } from '../allergens/allergens.model';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectModel(User) private readonly userRepository: typeof User,
+    @InjectModel(Allergen) private readonly allergenRepository: typeof Allergen,
   ) {}
 
   async getUserById(id: number) {
@@ -33,6 +35,18 @@ export class UsersService {
       throw new HttpException('user not found', HttpStatus.BAD_REQUEST);
     }
 
-    await user.$set('allergies', dto.allergens);
+    const data: Allergen[] = [];
+
+    for (let i = 0; i < dto.allergens.length; i++) {
+      const allergen = await this.allergenRepository.findOne({
+        where: { id: dto.allergens[i] },
+      });
+
+      if (allergen) {
+        data.push(allergen);
+      }
+    }
+
+    await user.$set('allergies', data);
   }
 }
