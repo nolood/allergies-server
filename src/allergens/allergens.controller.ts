@@ -22,4 +22,10 @@ export class AllergensController {
   ) {
     return this.allergensService.getByDateAndUser(dto, req.user.id);
   }
+
+  @UseGuards(UserIdGuard)
+  @Get('/byuser')
+  async getAllergensByUser(@Req() req: { user: User }) {
+    return this.allergensService.getByUser(req.user.id);
+  }
 }

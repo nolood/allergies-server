@@ -44,7 +44,7 @@ export class AllergensService implements OnModuleInit {
     const result = [];
     const user = await this.userRepository.findOne({
       where: { id },
-      include: [{ model: Allergen, attributes: [] }],
+      include: [{ model: Allergen }],
     });
 
     if (!user) {
@@ -69,11 +69,17 @@ export class AllergensService implements OnModuleInit {
 
       result.push({
         current: formattedCurrentDay,
-        dayofweek: formattedCurrentDay.toFormat('ccc'),
+        dayofweek: currentDay.toFormat('ccc'),
         allergens: allergensInDay,
       });
     }
 
     return result;
+  }
+
+  async getByUser(id: number) {
+    return this.allergenRepository.findAll({
+      include: [{ model: User, where: { id } }],
+    });
   }
 }
