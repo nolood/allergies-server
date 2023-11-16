@@ -1,5 +1,6 @@
 const data = [
   {
+    id: 1,
     title: 'Берёза',
     start: '01.04',
     end: '15.05',
@@ -10,6 +11,7 @@ const data = [
     color: '#7FB800',
   },
   {
+    id: 2,
     title: 'Дуб',
     start: '15.04',
     end: '30.06',
@@ -19,6 +21,7 @@ const data = [
     color: '#FF4500',
   },
   {
+    id: 3,
     title: 'Ива',
     start: '01.03',
     end: '15.04',
@@ -29,6 +32,7 @@ const data = [
     color: '#1E90FF',
   },
   {
+    id: 4,
     title: 'Липа',
     start: '01.06',
     end: '15.07',
@@ -38,6 +42,7 @@ const data = [
     color: '#00CED1',
   },
   {
+    id: 5,
     title: 'Ольха',
     start: '15.03',
     end: '30.04',
@@ -48,6 +53,7 @@ const data = [
     color: '#8B4513',
   },
   {
+    id: 6,
     title: 'Пихта',
     start: '01.01',
     end: '31.12',
@@ -57,6 +63,7 @@ const data = [
     color: '#228B22',
   },
   {
+    id: 7,
     title: 'Сосна',
     start: '01.03',
     end: '15.05',
@@ -67,6 +74,7 @@ const data = [
     color: '#FF6347',
   },
   {
+    id: 8,
     title: 'Тополь',
     start: '01.02',
     end: '15.03',
@@ -76,6 +84,7 @@ const data = [
     color: '#8A2BE2',
   },
   {
+    id: 9,
     title: 'Ясень',
     start: '01.04',
     end: '15.05',
@@ -86,6 +95,7 @@ const data = [
     color: '#32CD32',
   },
   {
+    id: 10,
     title: 'Яблоня',
     start: '01.04',
     end: '15.05',
@@ -96,6 +106,7 @@ const data = [
     color: '#FFA07A',
   },
   {
+    id: 11,
     title: 'Жасмин',
     start: '15.05',
     end: '30.06',
@@ -105,6 +116,7 @@ const data = [
     color: '#f8de7e',
   },
   {
+    id: 12,
     title: 'Клен',
     start: '01.04',
     end: '15.05',

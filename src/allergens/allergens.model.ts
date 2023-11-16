@@ -8,7 +8,6 @@ export class Allergen extends Model<Allergen> {
   @Column({
     primaryKey: true,
     unique: true,
-    autoIncrement: true,
     type: DataTypes.INTEGER,
   })
   id: number;
