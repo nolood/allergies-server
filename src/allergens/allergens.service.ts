@@ -42,7 +42,10 @@ export class AllergensService implements OnModuleInit {
 
   async getByDateAndUser(dto: AllergensByDateDto, id: number) {
     const result = [];
-    const user = await this.userRepository.findOne({ where: { id } });
+    const user = await this.userRepository.findOne({
+      where: { id },
+      include: ['allergies'],
+    });
 
     if (!user) {
       throw new HttpException('user not found', HttpStatus.BAD_REQUEST);
