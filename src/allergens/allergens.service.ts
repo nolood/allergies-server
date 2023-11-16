@@ -68,8 +68,8 @@ export class AllergensService implements OnModuleInit {
       });
 
       result.push({
-        start: formattedCurrentDay,
-        end: formattedCurrentDay,
+        current: formattedCurrentDay,
+        dayofweek: formattedCurrentDay.toFormat('ccc'),
         allergens: allergensInDay,
       });
     }
