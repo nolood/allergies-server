@@ -44,7 +44,7 @@ export class AllergensService implements OnModuleInit {
     const result = [];
     const user = await this.userRepository.findOne({
       where: { id },
-      include: ['allergies'],
+      include: [{ model: Allergen, attributes: [] }],
     });
 
     if (!user) {
