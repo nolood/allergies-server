@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import { AllergensService } from './allergens.service';
 import { AllergenBaseDto } from './dto/allergen-base.dto';
 import { UserIdGuard } from '../users/user.guard';
@@ -27,5 +35,14 @@ export class AllergensController {
   @Get('/byuser')
   async getAllergensByUser(@Req() req: { user: User }) {
     return this.allergensService.getByUser(req.user.id);
+  }
+
+  @UseGuards(UserIdGuard)
+  @Get('/month/:month')
+  async getAllergensByMonth(
+    @Req() req: { user: User },
+    @Param('month') month: string,
+  ) {
+    return this.allergensService.getByMonth(req.user.id, month);
   }
 }
