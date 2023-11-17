@@ -1,4 +1,12 @@
-import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Query,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UserCreateDto } from './dto/user-create.dto';
 import { UserIdGuard } from './user.guard';
@@ -18,5 +26,10 @@ export class UsersController {
   @Post('/allergens')
   async addAllergens(@Body() dto: AddAllergensDto, @Req() req: { user: User }) {
     return this.usersService.setAllergens(dto, req.user.id);
+  }
+
+  @Get('/weather')
+  async getWeather(@Query() { lat, lon }: { lat: string; lon: string }) {
+    return this.usersService.getWeather({ lat, lon });
   }
 }

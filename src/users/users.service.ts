@@ -4,12 +4,15 @@ import { User } from './users.model';
 import { UserCreateDto } from './dto/user-create.dto';
 import { AddAllergensDto } from './dto/add-allergens.dto';
 import { Allergen } from '../allergens/allergens.model';
+import { HttpService } from '@nestjs/axios';
+import { map } from 'rxjs';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectModel(User) private readonly userRepository: typeof User,
     @InjectModel(Allergen) private readonly allergenRepository: typeof Allergen,
+    private readonly httpService: HttpService,
   ) {}
 
   async getUserById(id: number) {
@@ -48,5 +51,30 @@ export class UsersService {
     }
 
     await user.$set('allergies', data);
+  }
+
+  async getWeather({ lat, lon }: { lat: string; lon: string }) {
+    const headers = {
+      'X-Yandex-API-Key': process.env.WEATHER_API_KEY,
+    };
+
+    return this.httpService
+      .get(
+        `https://api.weather.yandex.ru/v2/forecast?lat=${lat}&lon=${lon}&[lang=ru_RU]`,
+        {
+          headers,
+        },
+      )
+      .pipe(
+        map((response) => {
+          const newData = { ...response.data };
+
+          if (newData.forecasts) {
+            delete newData.forecasts;
+          }
+
+          return newData;
+        }),
+      );
   }
 }
