@@ -51,10 +51,10 @@ export class AllergensService implements OnModuleInit {
       throw new HttpException('user not found', HttpStatus.BAD_REQUEST);
     }
 
-    const datetime = DateTime.locale('ru-RU');
+    DateTime.setLocale('ru-RU');
 
-    const startOfWeek = datetime.fromFormat(dto.start, 'dd.MM');
-    const endOfWeek = datetime.fromFormat(dto.end, 'dd.MM');
+    const startOfWeek = DateTime.fromFormat(dto.start, 'dd.MM');
+    const endOfWeek = DateTime.fromFormat(dto.end, 'dd.MM');
 
     for (
       let currentDay = startOfWeek;
@@ -64,8 +64,8 @@ export class AllergensService implements OnModuleInit {
       const formattedCurrentDay = currentDay.toFormat('dd.MM');
 
       const allergensInDay = user.allergies.filter((allergen) => {
-        const allergenStart = datetime.fromFormat(allergen.start, 'dd.MM');
-        const allergenEnd = datetime.fromFormat(allergen.end, 'dd.MM');
+        const allergenStart = DateTime.fromFormat(allergen.start, 'dd.MM');
+        const allergenEnd = DateTime.fromFormat(allergen.end, 'dd.MM');
         return currentDay >= allergenStart && currentDay <= allergenEnd;
       });
 
