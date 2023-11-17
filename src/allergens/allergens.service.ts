@@ -88,13 +88,15 @@ export class AllergensService implements OnModuleInit {
       include: [{ model: User, where: { id } }],
     });
 
+    console.log(allergens)
+
     const targetDate = DateTime.fromFormat(month, 'MM');
 
     const filteredAllergies = allergens.filter((allergen) => {
       const start = DateTime.fromFormat(allergen.start, 'MM.dd');
       const end = DateTime.fromFormat(allergen.end, 'MM.dd');
 
-      return start <= targetDate && targetDate <= end;
+      return start.hasSame(targetDate, 'month') || end.hasSame(targetDate, 'month');
     });
 
     return filteredAllergies;
