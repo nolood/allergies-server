@@ -84,19 +84,15 @@ export class AllergensService implements OnModuleInit {
   }
 
   async getByMonth(id: number, month: string) {
-    const allergens = await this.allergenRepository.findAll({
-      include: [{ model: User, where: { id } }],
-    });
-
-    console.log(allergens)
+    const allergens = await this.getByUser(id)
 
     const targetDate = DateTime.fromFormat(month, 'MM');
 
     const filteredAllergies = allergens.filter((allergen) => {
-      const start = DateTime.fromFormat(allergen.start, 'MM.dd');
-      const end = DateTime.fromFormat(allergen.end, 'MM.dd');
+      const start = DateTime.fromFormat(allergen.start, 'dd.MM');
+      const end = DateTime.fromFormat(allergen.end, 'dd.MM');
 
-      return targetDate >= start && targetDate <= end;
+      return start <= targetDate && targetDate <= end;
     });
 
     return filteredAllergies;
