@@ -96,7 +96,7 @@ export class AllergensService implements OnModuleInit {
       const start = DateTime.fromFormat(allergen.start, 'MM.dd');
       const end = DateTime.fromFormat(allergen.end, 'MM.dd');
 
-      return start.hasSame(targetDate, 'month') || end.hasSame(targetDate, 'month');
+      return targetDate >= start && targetDate <= end;
     });
 
     return filteredAllergies;
