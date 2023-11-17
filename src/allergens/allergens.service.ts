@@ -51,8 +51,6 @@ export class AllergensService implements OnModuleInit {
       throw new HttpException('user not found', HttpStatus.BAD_REQUEST);
     }
 
-    DateTime.setLocale('ru-RU');
-
     const startOfWeek = DateTime.fromFormat(dto.start, 'dd.MM');
     const endOfWeek = DateTime.fromFormat(dto.end, 'dd.MM');
 
@@ -71,7 +69,7 @@ export class AllergensService implements OnModuleInit {
 
       result.push({
         current: formattedCurrentDay,
-        dayofweek: currentDay.toFormat('ccc'),
+        dayofweek: currentDay.toFormat('ccc', { locale: 'ru-RU' }),
         allergens: allergensInDay,
       });
     }
