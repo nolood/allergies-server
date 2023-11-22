@@ -23,7 +23,20 @@ export class AllergensService implements OnModuleInit {
   }
 
   async fillDatabase() {
-    const dataToSeed = data.default;
+    function stringToColor(str) {
+      let hash = 0;
+      for (let i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+      }
+
+      const c = (hash & 0x00ffffff).toString(16).toUpperCase();
+
+      return '#' + '00000'.substring(0, 6 - c.length) + c;
+    }
+    const dataToSeed = data.default.map((item) => ({
+      ...item,
+      color: stringToColor(item.title),
+    }));
 
     for (let i = 0; i < dataToSeed.length; i++) {
       const allergen = await this.allergenRepository.findOne({

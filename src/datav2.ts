@@ -291,3 +291,75 @@ const data = [
 ];
 
 export default data;
+
+const kek = [
+  {
+    period: '01.04-10.04',
+    allergens: [
+      {
+        id: 1,
+        title: 'Жасмин',
+        start: '01.04',
+        end: '15.05',
+      },
+      {
+        id: 1,
+        title: 'Жасмин',
+        start: '01.04',
+        end: '15.05',
+      },
+      {
+        id: 1,
+        title: 'Жасмин',
+        start: '01.04',
+        end: '15.05',
+      },
+    ],
+  },
+  {
+    period: '11.04-20.04',
+    allergens: [
+      {
+        id: 1,
+        title: 'Жасмин',
+        start: '01.04',
+        end: '15.05',
+      },
+      {
+        id: 1,
+        title: 'Жасмин',
+        start: '01.04',
+        end: '15.05',
+      },
+      {
+        id: 1,
+        title: 'Жасмин',
+        start: '01.04',
+        end: '15.05',
+      },
+    ],
+  },
+  {
+    period: '21.04-31.04',
+    allergens: [
+      {
+        id: 1,
+        title: 'Жасмин',
+        start: '01.04',
+        end: '15.05',
+      },
+      {
+        id: 1,
+        title: 'Жасмин',
+        start: '01.04',
+        end: '15.05',
+      },
+      {
+        id: 1,
+        title: 'Жасмин',
+        start: '01.04',
+        end: '15.05',
+      },
+    ],
+  },
+];
