@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Allergen } from './allergens.model';
-import * as data from '../data';
+import * as data from '../datav2';
 import { AllergensByDateDto } from './dto/allergens-by-date.dto';
 import { User } from '../users/users.model';
 import { DateTime } from 'luxon';
@@ -31,7 +31,10 @@ export class AllergensService implements OnModuleInit {
       });
 
       if (!allergen) {
-        await this.allergenRepository.create(dataToSeed[i]);
+        await this.allergenRepository.create({
+          ...dataToSeed[i],
+          intensity: dataToSeed[i].intensity,
+        });
       }
     }
   }
@@ -84,7 +87,7 @@ export class AllergensService implements OnModuleInit {
   }
 
   async getByMonth(id: number, month: string) {
-    const allergens = await this.getByUser(id)
+    const allergens = await this.getByUser(id);
 
     const targetDate = DateTime.fromFormat(month, 'MM');
 

@@ -23,6 +23,8 @@ export class Allergen extends Model<Allergen> {
   symptoms: string;
   @Column({ type: DataTypes.STRING })
   crossReactions: string;
+  @Column({ type: DataTypes.ARRAY(DataTypes.JSON) })
+  intensity: { period: string; value: string }[];
 
   @BelongsToMany(() => User, () => UsersAllergens)
   users: User[];
